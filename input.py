@@ -19,7 +19,7 @@ class CSV:
         'level'
     )
     
-    def __init__(self, fileName, str):
+    def __init__(self, fileName : str):
         self.fileName : str = fileName
         self.filePath : str = None
         self.name : str = None
@@ -33,7 +33,7 @@ class CSV:
             self.name = baseName.replace(self._EXTENSION, '')
             self.filePath = os.path.join(os.getcwd(), self.fileName)
             with open(self.filePath, 'r') as file:
-                readLines = file.readLines()
+                readLines = file.readlines()
             file.close
             
             numberOfLines : int = len(readLines)

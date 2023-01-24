@@ -3,6 +3,9 @@
 import glob
 import os
 
+from input import CSV
+from output import XLSX
+
 
 # === CONSTANTS ================================================================
 
@@ -20,6 +23,7 @@ def _process():
     print('{0}()'.format(_process.__name__))
     for fileName in glob.glob(_FILE_SEARCH_PATTERN, recursive=True):
         print('processing {0}...'.format(fileName))
+        csv : CSV = CSV(fileName)
         pass
     pass
 
