@@ -1,5 +1,6 @@
 # === IMPORTS ==================================================================
 
+import math
 import os
 import typing
 
@@ -25,6 +26,8 @@ class CSV:
         self.name : str = None
         self.header: typing.List[str] = []
         self.entries : typing.List[typing.List[float]] = []
+        self.preFloatRadius : typing.List[float] = []
+        self.preFloatAngle : typing.List[float] = []
         self._read()
         
     def _read(self):
@@ -61,7 +64,13 @@ class CSV:
                 values : typing.List[float] = []
                 for field in fields:
                     values.append(float(field))
+                x : float = values[self._HEADER_FIELDS.index('preFloatX')]
+                y : float = values[self._HEADER_FIELDS.index('preFloatY')]
+                radius : float = math.sqrt(x**2 + y**2)
+                angle : float = math.degrees(math.atan2(y, x))
                 self.entries.append(values)
+                self.preFloatRadius.append(radius)
+                self.preFloatAngle.append(angle)
             except:
                 pass
             

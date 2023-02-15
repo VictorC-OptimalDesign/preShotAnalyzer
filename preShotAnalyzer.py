@@ -21,11 +21,13 @@ _VERSION : str = '{0}.{1}.{2}'.format(_VERSION_MAJOR, _VERSION_MINOR, _VERSION_U
 def _process():
     _FILE_SEARCH_PATTERN : str = './**/*.csv'
     print('{0}()'.format(_process.__name__))
+    xlsx : XLSX = XLSX()
     for fileName in glob.glob(_FILE_SEARCH_PATTERN, recursive=True):
         print('processing {0}...'.format(fileName))
         csv : CSV = CSV(fileName)
+        xlsx.writeData(csv)
         pass
-    pass
+    xlsx.finalize()
 
 
 # === MAIN =====================================================================
